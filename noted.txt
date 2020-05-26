@@ -40,3 +40,15 @@ it uses to decrypt data?
 38. A C
 39 A
 
+Chapter 1:
+1. B
+2. A
+3. D
+4. A
+5. C
+6. B D
+7. A
+8. B
+9. B C
+10. B
+11. D A
