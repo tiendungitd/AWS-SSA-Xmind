@@ -52,3 +52,27 @@ Chapter 1:
 9. B C
 10. B
 11. D A
+
+Chapter 2:
+1. A C
+2. B C
+3. D
+4. C A ?
+5. A D ?
+6. B
+7. A
+8. C B ? The first of two strings in a resource tag is the key—the group to which the specific
+resource belongs. The second string is the value, which identifies the resource itself
+9. d
+10. C B D ?
+11. A C
+12. C D
+13. A
+14. A B D
+15 A D ?
+16. B D
+17. D
+18. B
+19. A
+20. C
+
