@@ -100,5 +100,48 @@ Chapter 3:
 19. B
 20. A
 
+Chapter 4:
+1. A
+2. C
+3. A D
+4. B
+5. A
+6. B D ? Each VPC contains a default security group that can’t be deleted. You can create a
+security group by itself without attaching it to anything. But if you want to use it, you must
+attach it to an ENI. You also attach multiple security groups to the same ENI.
+7. A
+8. B D? D. An Internet gateway has no management IP address. It can be associated with only one
+VPC at a time and so cannot grant Internet access to instances in multiple VPCs. It is a
+logical VPC resource and not a virtual or physical router.
+9. A 
+10. A
+11. C A. An instance must have a public IP address to be directly reachable from the Internet.
+The instance may be able to reach the Internet via a NAT device. The instance won’t
+necessarily receive the same private IP address because it was automatically assigned.
+The instance will be able to reach other instances in the subnet because a public IP is not
+required.
+12. B
+13. A
+14. D A. The NAT device’s default route must point to an Internet gateway, and the instance’s
+default route must point to the NAT device. No differing NACL configurations between
+subnets are required to use a NAT device. Security groups are applied at the ENI level. A
+NAT device doesn’t require multiple interfaces.
+15. A  
+16. D A. An Internet gateway performs NAT for instances that have a public IP address. A route
+table defines how traffic from instances is forwarded. An EIP is a public IP address and
+can’t perform NAT. An ENI is a network interface and doesn’t perform NAT.
+17. A
+18. A
+19. A D. Each peered VPC needs a route to the CIDR of its peer; therefore, you must create
+two routes with the peering connection as the target. Creating only one route is not sufficient
+to enable bidirectional communication. Additionally, the instances’ security groups
+must allow for bidirectional communication. You can’t create more than one peering connection
+between a pair of VPCs.
+20. C A. Inter-region VPC peering connections aren’t available in all regions and support a maximum
+MTU of 1,500 bytes. You can use IPv4 across an inter-region peering connection but
+not IPv6.
+
+
+
 
 SEN-L15529185
