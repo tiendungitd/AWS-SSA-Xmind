@@ -101,7 +101,7 @@ Chapter 3:
 20. A
 
 Chapter 4:
-1. A
+1. A 
 2. C
 3. A D
 4. B
@@ -140,6 +140,72 @@ between a pair of VPCs.
 20. C A. Inter-region VPC peering connections aren’t available in all regions and support a maximum
 MTU of 1,500 bytes. You can use IPv4 across an inter-region peering connection but
 not IPv6.
+
+Chapter 5: 
+1. A C
+2. C
+3. D
+4. B
+5. B
+6. B C
+7. C
+8. A C
+9. B ?
+10. A
+11. A
+12. C
+13. A
+14. D
+15. A
+16. B
+17. D
+18. A B
+19. B
+20. A
+21. B
+22. D
+23. B
+24. D
+
+Chapter 6:
+1. B C. While each of the other answers represents possible concerns, none of them carries consequences
+as disastrous as the complete loss of control over your account.
+2. A B. The Action element refers to the kind of action requested (list, create, etc.), the Resource
+element refers to the particular AWS account resource that’s the target of the policy, and the
+Effect element refers to the way IAM should react to a request.
+3. B C D A, B, C. Unless there’s a policy that explicitly allows an action, it will be denied. Therefore,
+a user with no policies or with a policy permitting S3 actions doesn’t permit EC2 instance
+permissions. Similarly, when two policies conflict, the more restrictive will be honored. The
+AdministratorAccess policy opens up nearly all AWS resources, including EC2.
+4. B C
+5. A D  A, B. X.509 is the standard protocol for SOAP requests, but access keys are used for S3
+and Amazon Mechanical Turk requests. Passwords are never used for encryption, just
+authentication, and key pairs are generally used only for EC2 instances or for authenticating
+signed URLS for CloudFront distributions
+6. D
+7. B
+8. C
+9. A Key Management Service manages encryption infrastructure but isn’t FIPS 140-2 compliant.
+Security Token Service is used to issue tokens for valid IAM roles. And Secrets Manager
+handles secrets for third-party services or databases.
+10. B
+11. A
+12. A C A, D. You IAM policies will be as effective as ever, even if outsiders know your policies.
+Since even an account’s root user would never have known other users’ passwords, there’s
+no reason to change them.
+13. B
+14. B C
+15. D STS tokens are used as temporary credentials to external identities for resource access
+to through IAM roles. Users and groups would not use tokens to authenticate, and roles are
+used to define the access a token will provide, not the recipient of the access
+16. C
+17. B D
+18. B
+19. A B C, D. An AWS managed service takes care of all underlying infrastructure management
+for you. In this case, that will include data replication and software updates. On-premises
+integration and multi-AZ deployment are important infrastructure features, but they’re not
+unique to “managed” services.
+20. B D C
 
 
 
