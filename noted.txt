@@ -208,6 +208,82 @@ unique to “managed” services.
 20. B D C
 
 
+Chapter 7:
+1. A B D B, D. Creating a bucket and subnet are API actions, regardless of whether they’re performed
+from the web console or AWS CLI. Uploading an object to an S3 bucket is a data
+event, not a management event. Logging into the AWS console is a non-API management
+event.
+2. A C C. Data events include S3 object-level activity and Lambda function executions. Downloading
+an object from S3 is a read-only event. Uploading a file to an S3 bucket is a writeonly
+event and hence would not be logged by the trail. Viewing an S3 bucket and creating a
+Lambda function are management events, not data events.
+3. C
+4. B
+5. C
+6. D A. CloudWatch can store high-resolution metrics at subminute resolution. Therefore,
+updating a metric at 15:57:08 and again at 15:57:37 will result in CloudWatch storing two
+separate data points. Only if the metric were regular resolution would CloudWatch overwrite
+an earlier data point with a later one. Under no circumstances would CloudWatch
+ignore a metric update.
+7. D Metrics stored at one-hour resolution age out after 15 months. Five-minute resolutions
+are stored for 63 days. One-minute resolution metrics are stored for 15 days. High-resolution
+metrics are kept for 3 hours.
+8. B A. To graph a metric’s data points, specify the Sum statistic and set the period equal to the
+metric’s resolution, which is in this case is five minutes. Graphing the Sum or Average statistic
+over a one-hour period will not graph the metric’s data points but rather the Sum or
+Average of those data points over a one-hour period. Using the Sample count statistic over a
+five-minute period will yield a value of one for each period, since there’s only one data point
+per period.
+9. B 
+10. D A, D. Every log stream must be in a log group. The retention period setting of a log group
+controls how long CloudWatch retains log events within those streams. You can’t manually
+delete log events individually, but you can delete all events in a log stream by deleting the
+stream. You can’t set a retention period on a log stream directly.
+11. A  A, C. CloudTrail will not stream events greater than 256 KB in size. There’s also a normal
+delay, typically up to 15 minutes, before an event appears in a CloudWatch log stream.
+Metric filters have no bearing on what log events get put into a log stream. Although a misconfigured
+or missing IAM role would prevent CloudTrail from streaming logs to Cloud-
+Watch, the question indicates that some events are present. Hence, the IAM role is correctly
+configured.
+12. D B, D. If an EBS volume isn’t attached to a running instance, EBS won’t generate any metrics
+to send to CloudWatch. Hence, the alarm won’t be able to collect enough data points
+to alarm. The evaluation period can be no more than 24 hours, and the alarm was created
+two days ago, so the evaluation period has elapsed. The data points to monitor don’t have
+to cross the threshold for CloudWatch to determine the alarm state.
+13. B To have CloudWatch treat missing data as exceeding the threshold, set the Treat Missing
+Data As option to Breaching. Setting it to Not Breaching will have the opposite effect.
+Setting it to As Missing will cause CloudWatch to ignore the missing data and behave as
+if those evaluation periods didn’t occur. The Ignore option causes the alarm not to change
+state in response to missing data. There’s no option to treat missing data as Not Missing.
+14. B C  C, D. CloudWatch can use the Simple Notification Service to send a text message. Cloud-
+Watch refers to this as a Notification action. To reboot an instance, you must use an EC2
+Action. The Auto Scaling action will not reboot an instance. SMS is not a valid Cloud-
+Watch alarm action.
+15. B A. The recover action is useful when there’s a problem with an instance that requires AWS
+involvement to repair, such as a hardware failure. The recover action migrates the same
+instance to a new host. Rebooting an instance assumes the instance is running and entails
+the instance remaining on the same host. Recovering an instance does not involve restoring
+any data from a snapshot, as the instance retains the same EBS volume(s).
+16. A B. If CloudTrail were logging write-only management events in the same region as the
+instance, it would have generated trail logs containing the deletion event. Deleting a log
+stream containing CloudTrail events does not delete those events from the trail logs stored
+in S3. Deleting an EC2 instance is not an IAM event. If AWS Config were tracking changes
+to EC2 instances in the region, it would have recorded a timestamped configuration item
+for the deletion, but it would not include the principal that deleted the instance.
+17. C D  B, C, D. The delivery channel must include an S3 bucket name and may specify an SNS
+topic and the delivery frequency of configuration snapshots. You can’t specify a Cloud-
+Watch log stream.
+18. D. You can’t delete configuration items manually, but you can have AWS Config delete them
+after no less than 30 days. Pausing or deleting the configuration recorder will stop AWS Config
+from recording new changes but will not delete configuration items. Deleting configuration
+snapshots, which are objects stored in S3, will not delete the configuration items.
+19.  C, D. CloudWatch can graph only a time series. METRICS()/AVG(m1) and m1/m2 both return
+a time series. AVG(m1)-m1 and AVG(m1) return scalar values and can’t be graphed directly.
+20. A B. Deleting the rule will prevent AWS Config from evaluating resources’ configurations
+against it. Turning off the configuration recorder won’t prevent AWS Config from evaluating
+the rule. It’s not possible to delete the configuration history for a resource from AWS
+Config. When you specify a frequency for periodic checks, you must specify a valid frequency,
+or else AWS Config will not accept the configuration.
 
 
 SEN-L15529185
