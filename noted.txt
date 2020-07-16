@@ -217,9 +217,17 @@ event.
 an object from S3 is a read-only event. Uploading a file to an S3 bucket is a writeonly
 event and hence would not be logged by the trail. Viewing an S3 bucket and creating a
 Lambda function are management events, not data events.
-3. C
+3. C  CloudTrail stores 90 days of event history for each region, regardless of whether
+a trail is configured. Event history is specific to the events occurring in that region.
+Because the trail was configured to log read-only management events, the trail logs
+would not contain a record of the trail’s deletion. They might contain a record of who
+viewed the trail, but that would be insufficient to establish who deleted it. There is no
+such thing as an IAM user log
 4. B
-5. C
+5. C Basic monitoring sends metrics every five minutes, while detailed monitoring sends them
+every minute. CloudWatch can store metrics at regular or high resolution, but this affects
+how the metric is timestamped, rather than the frequency with which it’s delivered to
+CloudWatch.
 6. D A. CloudWatch can store high-resolution metrics at subminute resolution. Therefore,
 updating a metric at 15:57:08 and again at 15:57:37 will result in CloudWatch storing two
 separate data points. Only if the metric were regular resolution would CloudWatch overwrite
@@ -286,4 +294,71 @@ Config. When you specify a frequency for periodic checks, you must specify a val
 or else AWS Config will not accept the configuration.
 
 
-SEN-L15529185
+Chappter 8:
+1. A
+2. C
+3. D
+4. C A. CNAME is a record type, but it’s not a category. TTL, record type, and record data are
+all category names.
+5. C
+6. A C D
+7. C
+8. C A. Latency selects the available resource with the lowest latency.
+9. B 
+10. D
+11. A D
+12. A B
+13. B
+14. C
+15. A A. Geoproximity is about precisely pinpointing users while geolocation uses geopolitical
+boundaries.
+16. A B  A, D. Users on a single corporate campus or accessing resources through a VPN will not
+benefit from the distributed delivery provided by CloudFront.
+17. C
+18. A Choosing a price class offering limited distribution is the best way to reduce costs
+19. C
+20. C B. RTMP distributions can only manage content from S3 buckets. RTMP is intended for
+the distribution of video content.
+
+
+Chapter 9:
+1. A C. 99.95 percent availability translates to about 22 minutes of downtime per month, or
+4 hours and 23 minutes per year. 99.999 percent availability is less than 30 seconds of
+downtime per month, but the question calls for the minimum level of availability. 99 percent
+yields more than 7 hours of downtime per month, while 99.9 percent is more than 43 minutes
+of downtime per month.
+2. 
+3. B
+4. A D  B, D. One cause of application failures is resource exhaustion. By scoping out large enough
+instances and scaling out to make sure you have enough of them, you can prevent failure
+and thus increase availability. Scaling instances in may help with cost savings but won’t
+help availability. Storing web assets in S3 instead of hosting them from an instance can help
+with performance but won’t have an impact on availability.
+5. B
+6. A
+7. B A A, D, E. Auto Scaling monitors the health of instances in the group using either ELB or
+EC2 instance and system checks. It can’t use Route 53 health checks. Dynamic scaling
+policies can use CloudWatch Alarms, but these are unrelated to checking the health of
+instances.
+8. B C
+9. A C A, D. Enabling versioning protects objects against data corruption and deletion by keeping
+before and after copies of every object. The Standard storage class replicates objects across
+multiple availability zones in a region, guarding against the failure of an entire zone. Bucket
+policies may protect against accidental deletion, but they don’t guard against data corruption.
+Cross-region replication applies to new objects, not existing ones.
+10. c
+11. D
+12. B
+13. C  A
+14. A C D A, D. Two EC2 instances each with 2 private IP addresses would consume 100 IP addresses
+in a subnet. Additionally, AWS reserves 5 IP addresses in every subnet. The subnet therefore
+must be large enough to hold 105 IP addresses. 172.21.0.0/25 and 10.0.0.0/21 are
+sufficiently large. 172.21.0.0/26 allows room for only 63 IP addresses. 10.0.0.0/8 is large
+enough, but a subnet prefix length must be at least /16.
+15. A C A, D. Direct Connect offers consistent speeds and latency to the AWS cloud. Because
+Direct Connect bypasses the public Internet, it’s more secure.
+16. B
+17. A C
+18. D
+19. D
+20. A C 
