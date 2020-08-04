@@ -362,3 +362,103 @@ Direct Connect bypasses the public Internet, it’s more secure.
 18. D
 19. D
 20. A C 
+
+Chapter 10:
+1. A B D
+2. A C D A, B, C. A launch configuration pointing to an EC2 AMI and an associated load balancer
+are all, normally, essential to an Auto Scaling operation. Passing a startup script to the
+instance at runtime may not be necessary, especially if your application is already set up as
+part of your AMI.
+3. B 
+4. A Long-lived, more complex web applications and processes requiring in-depth monitoring
+and tracking are both more suited for EC2 instances, while processing transactions is a
+strength of Lambda.
+5. A D. RAID optimization is an OS-level configuration and can, therefore, be performed only
+from within the OS.
+6. C
+7. A 
+8. D B. Scalability is managed automatically by RDS. Indexes, schemas, and views should be
+optimized as much as possible.
+9. C D
+10. A C
+11. C
+12. A B D CloudDeploy is not a good source of CloudFormation templates.
+13. A
+14. B D
+15. A C
+16. A B
+17. D
+18. B C
+19. A B A, D. In many cases, Memcached will provide faster service. Redis configuration has a
+rather steep learning curve.
+20. B
+
+
+
+Chapter 11:
+1. A C
+2. B
+3. A D
+4. B
+5. A
+6. C
+7. B D C, D. Athena lets you perform advanced SQL queries against data stored in S3. A metric
+filter can increment based on the occurrence of a value in a CloudWatch log group but can’t
+tell you the most frequently occurring IP address.
+8. A
+9. A C
+10. C D. The Security Best Practices rules package has rules that apply to only Linux instances.
+The other rules contain rules for both Windows and Linux instances
+11. C D
+12. A C 
+13. D B. A security group to restrict inbound access to authorized sources is sufficient to guard
+against a UDP-based DDoS attack. Elastic load balancers do not provide UDP listeners,
+only TCP. AWS Shield is enabled by default and protects against those UDP-based attacks
+from sources that are allowed by the security group.
+14. A C A, C. WAF can block SQL injection attacks against your application, but only if it’s behind
+an application load balancer. It’s not necessary for the EC2 instances to have an elastic IP
+address. Blocking access to TCP port 3306, which is the port that MySQL listens on for
+database connections, may prevent direct access to the database server but won’t prevent a
+SQL injection attack.
+15. B D
+16. A D 
+17. D
+18. A B B, D. To encrypt data on an unencrypted EBS volume, you must first take a snapshot. The
+snapshot will inherit the encryption characteristics of the source volume, so an unencrypted EBS volume will always yield an unencrypted snapshot. You can then simultaneously
+encrypt the snapshot as you copy it to another region.
+19. B
+20. A D
+
+Chapter 12:
+1. C
+2. A
+3. b
+4. d
+5. A B D
+6. C B
+7. A B. TCO Calculator helps you compare on-premises to AWS deployments. Trusted Advisor
+checks your account for best-practice compliance. Cost and Usage Reports helps you analyze
+data from  an existing deployment.
+8. C A. Monitoring of EBS volumes for capacity is not within the scope of budgets.
+9. A B You’re actually allowed only two free budgets per account. Cost allocation tags are
+managed from the Cost Allocation Tags page.
+10. ba D. Spot instances are not appropriate for long-term use. Since it’s possible to schedule an
+RI to launch within a recurring block of time, provisioning other instance configurations
+for the summer months will be wasteful.
+11. c
+12. b C. The more you pay up front, the lower the overall cost. There’s no option called Monthly.
+13. b d
+14. b
+15. D There are three request types: Request, Request And Maintain, and Reserve For Duration.
+A spot instance interruption occurs when the spot price rises above your maximum. A
+spot fleet is a group of spot instances launched together.
+16. A Workload completions, manual restarts (which, technically, don’t exist), and data center
+outages are never referred to as interruptions
+17. b A spot instance pool is unused EC2 instances matching a particular set of launch specifications.
+Spot maximum and spot cap sound good but aren’t terms normally used in this
+context
+18. A The Spot Advisor only covers guidance for instance compute specifications and instance
+type.
+19. D. The command is request-spot-fleet. The --spot-fleet-request-config argument
+points to a JSON configuration file.
+20. C
